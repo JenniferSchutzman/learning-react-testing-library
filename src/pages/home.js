@@ -20,8 +20,11 @@ const Home = () => {
   };
 
   const goToIndividual = person => {
-    console.log('person', person)
-    history.push(`/individual/${person.name}`)
+    // console.log('person', person)
+    history.push({
+      pathname: `/individual/${person.name}`,
+      state: person
+    })
   }
 
 
@@ -32,7 +35,7 @@ const Home = () => {
       { loading && <h1>LOADING..................PUT SPINNER HERE</h1>}
       { members && members.map(indv => {
         return (
-          <ul onClick={goToIndividual(indv)} key={indv.name}>
+          <ul onClick={() => goToIndividual(indv)} key={indv.name}>
             <li>{indv.name}</li>
             <li>{indv.company}</li>
           </ul>

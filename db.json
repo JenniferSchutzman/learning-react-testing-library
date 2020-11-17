@@ -5,7 +5,6 @@
       "name": "Jenny Schutzman",
       "company": "Tallo",
       "commonLanguage": "Javascript",
-      "img": "",
       "hasDog": false
     },
     {
@@ -13,7 +12,6 @@
       "name": "Anna Fulton",
       "company": "Soveriegn",
       "commonLanguage": "Javascript",
-      "img": "",
       "hasDog": true
     },
     {
@@ -21,7 +19,6 @@
       "name": "Liah Wallace",
       "company": "Boomtown",
       "commonLanguage": "PhP",
-      "img": "",
       "hasDog": null
     }
   ]
