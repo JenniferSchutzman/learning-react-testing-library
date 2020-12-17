@@ -18,7 +18,7 @@ const Individual = () => {
     <>
       { personData && (
         <>
-          <div>{personData.name}</div>
+          <div data-testid="name">{personData.name}</div>
           <div>Company: {personData.company}</div>
           <div>Frequently Used Language: {personData.commonLanguage}</div>
         </>
