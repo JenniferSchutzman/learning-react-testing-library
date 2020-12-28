@@ -61,8 +61,9 @@ describe('render the Home component', () => {
 
   test('calls the GET, returning the company data correctly', async () => {
     // thinking toBeInTheDocument might be deprecated as well eventhough stil in documentation (like toDisplayValue)
-    // await waitFor(() => expect(screen.getByText(/Tallo/i)).toBeInTheDocument())
+    //  await waitFor(() => expect(screen.getByText(/Tallo/i)).toBeInTheDocument())
     render(<Home />)
+    await waitFor(() => expect(screen.getByText(/Tallo/i)).toHaveTextContent(('Tallo')))
     // await waitFor(() => expect(screen.getByTestId('company').toHaveTextContent('Tallo')))
   })
 
