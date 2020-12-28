@@ -1,10 +1,10 @@
 import { enableFetchMocks } from 'jest-fetch-mock'
 import React from 'react'
-import { cleanup, render, fireEvent, screen, waitFor, getByTestId } from '@testing-library/react'
+import { cleanup, render, fireEvent, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import fetchMock from 'jest-fetch-mock'
-import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history'
+// import fetchMock from 'jest-fetch-mock'
+// import userEvent from '@testing-library/user-event';
+// import { createMemoryHistory } from 'history'
 import { Router, MemoryRouter } from 'react-router-dom'
 
 import Home from './home';
@@ -14,8 +14,6 @@ enableFetchMocks()
 afterEach(() => {
   fetch.resetMocks()
 })
-
-
 
 const mockHistoryPush = jest.fn();
 
@@ -78,19 +76,13 @@ describe('render the Home component', () => {
     expect(screen.getByRole('heading')).toHaveTextContent('testing output')
   })
 
-  test('it has a button that says click', async () => {
-    render(<Home />)
-    expect(screen.getByRole('button')).toHaveTextContent('Click')
-  })
+  // test('it has a button that says click', async () => {
+  //   render(<Home />)
+  //   expect(screen.getByRole('button')).toHaveTextContent('Click')
+  // })
 
   test('the the onClick of the ul will send you to the new url', async () => {
-
-
     const goToIndividual = jest.fn();
-    render(<Home goToIndividual={goToIndividual} />)
-
-    // const history = createMemoryHistory()
-    // history.push('/individual/JennySchutzman')
     render(
       <MemoryRouter>
         <Home goToIndividual={goToIndividual} />
@@ -104,9 +96,6 @@ describe('render the Home component', () => {
     // expect(goToIndividual).toHaveBeenCalled();
     const historyObject = { "pathname": "/individual/JennySchutzman", "state": { "commonLanguage": "Javascript", "company": "Tallo", "hasDog": false, "id": 1, "name": "Jenny Schutzman" } }
     expect(mockHistoryPush).toHaveBeenCalledWith(historyObject)
-    // expect(screen.getByTestId("name")).toHaveTextContent("Jenny")
-
-
   })
 
 

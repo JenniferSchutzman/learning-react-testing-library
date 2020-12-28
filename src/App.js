@@ -8,6 +8,7 @@ import {
 
 import Home from './pages/home'
 import Individual from './pages/individual'
+import Form from './pages/form'
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/individual/:name" component={Individual} />
+        <Route exact path="/form" component={Form} />
       </Switch>
     </BrowserRouter>
   )

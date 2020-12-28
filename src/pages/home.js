@@ -68,6 +68,10 @@ const Home = () => {
     hasDog: false
   }
 
+  const goToForm = () => {
+    history.push('/form')
+  }
+
 
   return (
     // <>
@@ -85,6 +89,7 @@ const Home = () => {
     // </>
     <>
       <h1> testing output</h1>
+      <button onClick={goToForm()}> go to form</button>
       <ul data-testid="ul" onClick={() => goToIndividual(JennyData)}>
         <li data-testid="li"> testing to see if it's an issue with the return statement </li>
       </ul>
@@ -98,7 +103,6 @@ const Home = () => {
           </ul>
         )
       })}
-
     </>
   )
 }
