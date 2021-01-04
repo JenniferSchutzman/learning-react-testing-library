@@ -55,7 +55,7 @@ describe('render the Home component', () => {
   test('calls the GET, returning hte name correctly', async () => {
     render(<Home />)
     // i hate this test.  It feels like cheating but i can't find another way to point specifically to that item in the mapped array. 
-    // When I try to match 'listitem' role it yells at me that there are multiple
+    // When I try to match 'listitem' role it yells at me that there are multiple so I guess this is the only way.
     await waitFor(() => expect(screen.getByText(/Jenny Schutzman/i)).toHaveTextContent('Jenny Schutzman'))
   })
 
@@ -64,10 +64,19 @@ describe('render the Home component', () => {
     //  await waitFor(() => expect(screen.getByText(/Tallo/i)).toBeInTheDocument())
     render(<Home />)
     await waitFor(() => expect(screen.getByText(/Tallo/i)).toHaveTextContent(('Tallo')))
-    // await waitFor(() => expect(screen.getByTestId('company').toHaveTextContent('Tallo')))
+    // I NEED TO UNDERSTAND WHY THIS DOES NOT WORK WITH FIND BY!!!  CAUSING ISSUES IN THE APP AS WELL.
+    // NOW FINDS MULITPLE WHEN I USE QUERYBY toContain('Tallo')
+    // NOT SURE WHAT TO CALL AFTER QUERAY ALL BY TEST ID BC NOT REALLY A SINGLE VALUE OR AN ARRAY
+    // JEST SITE SAYS I SHOULD BE ABLE TO USE TOMATCHOBJECT ON ARRAYS AS WELL 
+    // expect(screen.queryAllByTestId('company')).toMatchObject([<li data-testid="company">Tallo</li>, <li data-testid="company">Sovereign</li>, <li data-testid="company">Boomtown</li>])
+  })
+  test('that I understand find by with jest matchers on non-arrays', async () => {
+    render(<Home />)
+    // REVIEW WITH IAN - NOT SURE WHY THIS DOESN"T WORK BUT THE NEXT TEST BY ID DOES
+    expect(screen.getByTestId("testing")).toHaveTextContent("testing output")
   })
 
-  test('accessibility works on the list items', async () => {
+  test('li has correcnt content', async () => {
     render(<Home />)
     expect(screen.getByTestId('li')).toHaveTextContent("testing to see if it's an issue with the return statement")
   })
@@ -79,7 +88,8 @@ describe('render the Home component', () => {
 
   // test('it has a button that says click', async () => {
   //   render(<Home />)
-  //   expect(screen.getByRole('button')).toHaveTextContent('Click')
+  //   // SHOW IAN, TOCONTAIN LEADS TOMATCHOBEJCT WHICH LEADS TOBE , with non working
+  //   expect(screen.getAllByRole('button')[0]).toBe(<button> go to form</button>)
   // })
 
   test('the the onClick of the ul will send you to the new url', async () => {
