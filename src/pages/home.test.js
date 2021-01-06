@@ -52,6 +52,30 @@ describe('render the Home component', () => {
   ]
   ))
 
+  // const members = [
+  //   {
+  //     id: 1,
+  //     name: "Jenny Schutzman",
+  //     company: "Tallo",
+  //     commonLanguage: "Javascript",
+  //     hasDog: false
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Anna Fulton",
+  //     company: "Sovereign",
+  //     commonLanguage: "Javascript",
+  //     hasDog: true
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Liah Wallace",
+  //     company: "Boomtown",
+  //     commonLanguage: "PhP",
+  //     hasDog: null
+  //   }
+  // ]
+
   test('calls the GET, returning hte name correctly', async () => {
     render(<Home />)
     // i hate this test.  It feels like cheating but i can't find another way to point specifically to that item in the mapped array. 
@@ -70,6 +94,7 @@ describe('render the Home component', () => {
     // JEST SITE SAYS I SHOULD BE ABLE TO USE TOMATCHOBJECT ON ARRAYS AS WELL 
     // expect(screen.queryAllByTestId('company')).toMatchObject([<li data-testid="company">Tallo</li>, <li data-testid="company">Sovereign</li>, <li data-testid="company">Boomtown</li>])
   })
+
   test('that I understand find by with jest matchers on non-arrays', async () => {
     render(<Home />)
     // REVIEW WITH IAN - NOT SURE WHY THIS DOESN"T WORK BUT THE NEXT TEST BY ID DOES
@@ -86,6 +111,7 @@ describe('render the Home component', () => {
     expect(screen.getByRole('heading')).toHaveTextContent('testing output')
   })
 
+  // BROKEN
   // test('it has a button that says click', async () => {
   //   render(<Home />)
   //   // SHOW IAN, TOCONTAIN LEADS TOMATCHOBEJCT WHICH LEADS TOBE , with non working
@@ -108,6 +134,14 @@ describe('render the Home component', () => {
     const historyObject = { "pathname": "/individual/JennySchutzman", "state": { "commonLanguage": "Javascript", "company": "Tallo", "hasDog": false, "id": 1, "name": "Jenny Schutzman" } }
     expect(mockHistoryPush).toHaveBeenCalledWith(historyObject)
   })
+
+  test('that it throws the correct error on a failed fetch', async () => {
+    fetch.mockReject(new Error("SOrry people, the data did not load correctly"))
+    render(<Home />)
+  })
+
+
+
 
 
 

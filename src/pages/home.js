@@ -7,7 +7,7 @@ const Home = () => {
   const history = useHistory();
   // BREAK THE SPACE IN 3001 TO SHOW THE ERROR 
   // const { error, loading, get, response } = useFetch('http://localhost:3001/members',
-  const { get, response } = useFetch('http://localhost:3001/members',
+  const { get, response, error, loading } = useFetch('http://localhost:3001/members',
     { cachePolicy: 'network-only' })
 
   useEffect(() => {
@@ -95,12 +95,17 @@ const Home = () => {
       </ul>
       {/* <button data-testid="history.push.click" onClick={() => goToIndividual(JennyData)}>Click</button> */}
       <button >Click</button>
-      {members.map(indv => {
+      { error && <div>"Sorry people, the data did not load correctly"</div>}
+      { loading && <h1>LOADING..................PUT SPINNER HERE</h1>}
+      {members && members.map(indv => {
         return (
+          // <>
+          //   <h1>Testing return</h1>
           <ul onClick={() => goToIndividual(indv)} key={indv.name}>
             <li>{indv.name}</li>
             <li data-testid="company" >{indv.company}</li>
           </ul>
+          // </>
         )
       })}
     </>
